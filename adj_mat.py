@@ -1,5 +1,9 @@
 # Adjacency Matrix representation in Python
 
+
+# Remove this comment as soon as you see it
+
+
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
