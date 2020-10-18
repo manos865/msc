@@ -4,6 +4,10 @@ import numpy as np
 import scipy as sp
 from functools import reduce
 
+
+#number of nodes
+size=8
+
 G = nx.DiGraph()
 G.add_edges_from(
     [('A', 'B'), ('A', 'C'), ('D', 'E'), ('B', 'C'), ('B', 'H'),
@@ -75,23 +79,50 @@ Cplus=AplusTran.dot(Aplus)
 print('C+','\n',Cplus)
 
 
-'''
+
+def sigma1(i,j,k):
+    s=0
+    s += np.sum(Aplus[i,k]*AplusTran[k,j])
+    return s
+
+def sigma2(i,j,k):
+    s=0
+    s += np.sum(Aminus[i,k]*AminusTran[k,j])
+    return s
+
+def sigma3(i,j,k):
+    s=0
+    s += np.sum(AplusTran[i,k]*Aplus[k,j])
+    return s
+
+def sigma4(i,j,k):
+    s=0
+    s += np.sum(AminusTran[i,k]*Aminus[k,j])
+    return s
+    
+
+
+#Dop: positive out degree
+#Don: negative out degree
+#Don: negative out degree
+#Din: negative in degree 
+
+
 for i in range(size):
     for j in range(size) :
         for k in range(size):
-            Bp=(1/Dop(i)*Dom(j))*   Aplus[i,k]*AplusTran[k,j]
-            Bm=(1/Dop(i)*Dom(j))*   Aplus[i,k]*AplusTran[k,j]
-            Cp=(1/Dop(i)*Dom(j))*   Aplus[i,k]*AplusTran[k,j]
-            Cm=(1/Dop(i)*Dom(j))*   Aplus[i,k]*AplusTran[k,j]
-'''
+            Bp=(1/Dop(i)*Dop(j))*sigma1(i, j, k)
+            Bm=(1/Don(i)*Don(j))*sigma2(i, j, k)
+            Cp=(1/Dip(i)*Dip(j))*sigma3(i, j, k)
+            Cm=(1/Din(i)*Din(j))*sigma4(i, j, k)
 
 
 
 
-'''
+
 result = reduce(lambda a, x: a + x, [0]+list(range(1,3+1)))
 print(result)
-'''
+
 
 reduce(lambda a, x: a + x, [0]+list(range(1,3+1)))
 
