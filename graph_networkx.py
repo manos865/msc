@@ -8,6 +8,7 @@ from functools import reduce
 #number of nodes
 size=8
 
+#create the graph
 G = nx.DiGraph()
 G.add_edges_from(
     [('A', 'B'), ('A', 'C'), ('D', 'E'), ('B', 'C'), ('B', 'H'),
@@ -22,7 +23,7 @@ values = [val_map.get(node, 0.25) for node in G.nodes()]
 
 
 
-# Specify the edges you want here
+# Specify the edges we want
 red_edges = [('A', 'C'), ('E', 'C'),('E','F'),('C','G')]
 edge_colours = ['black' if not edge in red_edges else 'red'
                 for edge in G.edges()]
@@ -37,7 +38,7 @@ pos = nx.spring_layout(G)
 #pos:Initial positions for nodes as a dictionary with node as keys and values as a list or tuple.
 nx.draw_networkx_nodes(G, pos, cmap=plt.get_cmap('jet'), 
                        node_color = values, node_size = 500)
-#cmap=plt.get_cmap('jet')
+cmap=plt.get_cmap('jet')
 
 
 nx.draw_networkx_labels(G, pos)
@@ -50,6 +51,9 @@ plt.show()
 converted = nx.convert_matrix.to_numpy_matrix(G)
 print(converted)
 
+
+#creating matrices A+ , A- , B+ , B- , C+ , C-
+#convert the matrix
 Ap = np.squeeze(np.asarray(converted))
 Ap[Ap < 0] = 0
 print('Ap','\n',Ap)
@@ -80,6 +84,12 @@ print('C+','\n',Cplus)
 
 
 
+
+
+
+
+# create the Sums needed for the co-reference and co-citation matrices
+
 def sigma1(i,j,k):
     s=0
     s += np.sum(Aplus[i,k]*AplusTran[k,j])
@@ -102,57 +112,52 @@ def sigma4(i,j,k):
     
 
 
-#Dop: positive out degree
-#Don: negative out degree
+
+
+#co-citation and co-reference matrices
+
+
+#Dop: positive out degree : G.in_degree
+#Don: negative out degree : G.out_degree
 #Don: negative out degree
 #Din: negative in degree 
 
 
 for i in range(size):
-    for j in range(size) :
+    for j in range(size):
         for k in range(size):
-            Bp=(1/Dop(i)*Dop(j))*sigma1(i, j, k)
-            Bm=(1/Don(i)*Don(j))*sigma2(i, j, k)
-            Cp=(1/Dip(i)*Dip(j))*sigma3(i, j, k)
-            Cm=(1/Din(i)*Din(j))*sigma4(i, j, k)
+            Bp=(1/(G.out_degree(i)*G.out_degree(j)))*sigma1(i, j, k)
+            Bm=(1/(G.out_degree(i)*G.out_degree(j)))*sigma2(i, j, k)
+            Cp=(1/(G.in_degree(i)*G.in_degree(j)))*sigma3(i, j, k)
+            Cm=(1/(G.in_degree(i)*G.in_degree(j)))*sigma4(i, j, k)
+
+
+
+
+#similarity and balance to be used as metrics for the affinity propagation algorithm
+
+
+balance_in=[]
+balance_out=[]
+for i in range(size):
+    for j in range(size):
+        balance_in[i,j]=min(((1+Bp[i,j])/(1+Bm[i,j])),((1+Bm[i,j])/(1+Bp[i,j])))
+        balance_out[i,j]=min(((1+Cp[i,j])/(1+Cm[i,j])),((1+Cm[i,j])/(1+Cp[i,j])))
+
+Sout=[]
+Sin=[]
+for i in range(size):
+    for j in range(size):
+        Sout[i,j]=balance_out[i,j]*(Bp[i,j]+Bm[i,j])
+        Sin[i,j]=balance_in[i,j]*(Cp[i,j]+Cm[i,j])
+
+similarity=[]
+for i in range(size):
+    for j in range(size):
+        similarity[i,j]=Sin[i,j]+Sout[i,j]
 
 
 
 
 
-result = reduce(lambda a, x: a + x, [0]+list(range(1,3+1)))
-print(result)
 
-
-reduce(lambda a, x: a + x, [0]+list(range(1,3+1)))
-
-
-
-G = nx.DiGraph()
-nx.add_path(G, [0, 1, 2, 3])
-G.out_degree(0)  # node 0 with degree 1
-list(G.out_degree([0, 1, 2]))
-
-
-
-
-#from graph to matrix
-A=nx.to_numpy_matrix(G)
-#print(A)
-
-G = nx.Graph([(1,1)])
-A = nx.adjacency_matrix(G)
-
-#print('Α','\n',A.todense())
-A.setdiag(A.diagonal()*2) 
-#print('A','\n',A.todense())
-
-G = nx.path_graph(4)  # or DiGraph, MultiGraph, MultiDiGraph, etc
-G.degree[0]  # node 0 has degree 1
-list(G.degree([0, 1, 2]))
-#G.in_degree[0]
-
-
-#G.in_degree([0,1])
-#{0: 0, 1: 1}
-#list(G.in_degree([0,1]).values())
