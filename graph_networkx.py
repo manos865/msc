@@ -102,12 +102,12 @@ def sigma2(i,j,k):
 
 def sigma3(i,j,k):
     s=0
-    s += np.sum(AplusTran[i,k]*Aplus[k,j])
+    s += np.sum(AplusTran[k,j]*Aplus[i,k])
     return s
 
 def sigma4(i,j,k):
     s=0
-    s += np.sum(AminusTran[i,k]*Aminus[k,j])
+    s += np.sum(AminusTran[k,j]*Aminus[i,k])
     return s
     
 
