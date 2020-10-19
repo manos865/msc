@@ -13,8 +13,7 @@ from functools import reduce
 
 
 
-#number of nodes
-size=8
+
 
 #create the graph
 G = nx.DiGraph()
@@ -32,8 +31,21 @@ val_map = {1: 0.0,
 
 values = [val_map.get(node, 0.25) for node in G.nodes()]
 
-print('weight')
-print(G[1][4])
+print('weight for edge 1-3')
+print(G[1][3])
+
+
+#number of nodes
+print(G.number_of_nodes())
+size=G.number_of_nodes()
+print('...')
+
+
+
+for i in range(1,8):
+    print(G.degree[i])
+    #print(G.out_degree[i])
+    #print(G.in_degree[i])
 
 '''
 for n,nbrsdict in G.adjacency_iter():
@@ -69,6 +81,9 @@ nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
 plt.show()
 #exoume ka8orisei oles tis parametrous kai tupwnoume
 
+
+####################################
+#prints number of edges for each node
 degrees = [val for (node, val) in G.degree()]
 print(degrees)
 
