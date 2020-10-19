@@ -6,6 +6,9 @@ from sklearn.cluster import AffinityPropagation
 from sklearn import metrics
 from sklearn.datasets import make_blobs
 
+
+
+
 # #############################################################################
 # Generate sample data
 centers = [[1, 1], [-1, -1], [1, -1]]
