@@ -123,6 +123,7 @@ def sigma4(i,j,k):
 #Din: negative in degree 
 
 
+
 for i in range(size):
     for j in range(size):
         for k in range(size):
