@@ -18,7 +18,6 @@ val_map = {'A': 0.0,
            'D': 0.6142839482638,
            'H': 1.0}
 
-
 values = [val_map.get(node, 0.25) for node in G.nodes()]
 
 
