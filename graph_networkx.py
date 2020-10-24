@@ -42,7 +42,7 @@ cmap=plt.get_cmap('jet')
 
 nx.draw_networkx_labels(G, pos)
 nx.draw_networkx_edges(G, pos, edgelist=red_edges, edge_color='r', arrows=True)
-nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
+nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=True)
 plt.show()
 #exoume ka8orisei oles tis parametrous kai tupwnoume
 
@@ -82,9 +82,9 @@ Cplus=AplusTran.dot(Aplus)
 print('C+','\n',Cplus)
 
 
+print(G.out_degree['A'])
 
-
-
+'''
 
 
 # create the Sums needed for the co-reference and co-citation matrices
@@ -114,12 +114,6 @@ def sigma4(i,j,k):
 
 
 #co-citation and co-reference matrices
-
-
-#Dop: positive out degree : G.in_degree
-#Don: negative out degree : G.out_degree
-#Don: negative out degree
-#Din: negative in degree 
 
 
 
@@ -158,6 +152,6 @@ for i in range(size):
 
 
 
-
+'''
 
 
