@@ -11,7 +11,7 @@ from sklearn.datasets import make_blobs
 
 # #############################################################################
 # Generate sample data
-centers = [[1, 1], [-1, -1], [1, -1]]
+centers = [[2, 2], [-1, -1], [1, -1]]
 X, labels_true = make_blobs(n_samples=300, centers=centers, cluster_std=0.5,
                             random_state=0)
 
@@ -55,3 +55,4 @@ for k, col in zip(range(n_clusters_), colors):
 
 plt.title('Estimated number of clusters: %d' % n_clusters_)
 plt.show()
+
