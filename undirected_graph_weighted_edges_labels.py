@@ -34,3 +34,6 @@ nx.draw_networkx_labels(G, pos, font_size=20, font_family="sans-serif")
 
 plt.axis("off")
 plt.show()
+
+
+

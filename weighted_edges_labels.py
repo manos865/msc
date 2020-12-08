@@ -36,4 +36,4 @@ plt.axis("off")
 plt.show()
 
 
-print(G.in_degree('a'))
+#print(G.in_degree('a'))
