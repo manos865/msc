@@ -1,0 +1,279 @@
+Number of nodes 10
+Number of edges: 5
+Connectivity: 1.0%
+Number of clusters: 10 (Mutually equal similarities - AP returns arbitrary clusters)
+
+Number of nodes 10
+Number of edges: 8
+Connectivity: 2.5%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 10
+Number of edges: 7
+Connectivity: 5.0%
+Number of clusters: 10 (Mutually equal similarities - AP returns arbitrary clusters)
+
+Number of nodes 10
+Number of edges: 11
+Connectivity: 10.0%
+Number of clusters: 2
+
+Number of nodes 10
+Number of edges: 23
+Connectivity: 25.0%
+Number of clusters: 3
+
+Number of nodes 10
+Number of edges: 40
+Connectivity: 50.0%
+Number of clusters: 3
+
+Number of nodes 10
+Number of edges: 69
+Connectivity: 75.0%
+Number of clusters: 3
+
+Number of nodes 10
+Number of edges: 90
+Connectivity: 100.0%
+Number of clusters: 3
+
+Number of nodes 50
+Number of edges: 45
+Connectivity: 1.0%
+Number of clusters: 11
+
+Number of nodes 50
+Number of edges: 67
+Connectivity: 2.5%
+Number of clusters: 13
+
+Number of nodes 50
+Number of edges: 127
+Connectivity: 5.0%
+Number of clusters: 12
+
+Number of nodes 50
+Number of edges: 250
+Connectivity: 10.0%
+Number of clusters: 9
+
+Number of nodes 50
+Number of edges: 610
+Connectivity: 25.0%
+Number of clusters: 11
+
+Number of nodes 50
+Number of edges: 1224
+Connectivity: 50.0%
+Number of clusters: 9
+
+Number of nodes 50
+Number of edges: 1873
+Connectivity: 75.0%
+Number of clusters: 11
+
+Number of nodes 50
+Number of edges: 2450
+Connectivity: 100.0%
+Number of clusters: 10
+
+Number of nodes 100
+Number of edges: 133
+Connectivity: 1.0%
+Number of clusters: 26
+
+Number of nodes 100
+Number of edges: 244
+Connectivity: 2.5%
+Number of clusters: 23
+
+Number of nodes 100
+Number of edges: 461
+Connectivity: 5.0%
+Number of clusters: 22
+
+Number of nodes 100
+Number of edges: 1001
+Connectivity: 10.0%
+Number of clusters: 15
+
+Number of nodes 100
+Number of edges: 2404
+Connectivity: 25.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 100
+Number of edges: 4918
+Connectivity: 50.0%
+Number of clusters: 18
+
+Number of nodes 100
+Number of edges: 7417
+Connectivity: 75.0%
+Number of clusters: 16
+
+Number of nodes 100
+Number of edges: 9900
+Connectivity: 100.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 250
+Number of edges: 591
+Connectivity: 1.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 250
+Number of edges: 1440
+Connectivity: 2.5%
+Number of clusters: 47
+
+Number of nodes 250
+Number of edges: 3087
+Connectivity: 5.0%
+Number of clusters: 36
+
+Number of nodes 250
+Number of edges: 6239
+Connectivity: 10.0%
+Number of clusters: 30
+
+Number of nodes 250
+Number of edges: 15547
+Connectivity: 25.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 250
+Number of edges: 31141
+Connectivity: 50.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 250
+Number of edges: 46538
+Connectivity: 75.0%
+Number of clusters: 37
+
+Number of nodes 250
+Number of edges: 62250
+Connectivity: 100.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 500
+Number of edges: 2516
+Connectivity: 1.0%
+Number of clusters: 100
+
+Number of nodes 500
+Number of edges: 6258
+Connectivity: 2.5%
+Number of clusters: 71
+
+Number of nodes 500
+Number of edges: 12496
+Connectivity: 5.0%
+Number of clusters: 64
+
+Number of nodes 500
+Number of edges: 24901
+Connectivity: 10.0%
+Number of clusters: 63
+
+Number of nodes 500
+Number of edges: 62353
+Connectivity: 25.0%
+Number of clusters: 68
+
+Number of nodes 500
+Number of edges: 124899
+Connectivity: 50.0%
+Number of clusters: 85
+
+Number of nodes 500
+Number of edges: 187297
+Connectivity: 75.0%
+Number of clusters: 117
+
+Number of nodes 500
+Number of edges: 249500
+Connectivity: 100.0%
+Number of clusters: 500 (Mutually equal similarities - AP returns arbitrary clusters)
+
+Number of nodes 1000
+Number of edges: 10072
+Connectivity: 1.0%
+Number of clusters: 163
+
+Number of nodes 1000
+Number of edges: 24927
+Connectivity: 2.5%
+Number of clusters: 99
+
+Number of nodes 1000
+Number of edges: 49419
+Connectivity: 5.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 1000
+Number of edges: 100365
+Connectivity: 10.0%
+Number of clusters: 127
+
+Number of nodes 1000
+Number of edges: 250110
+Connectivity: 25.0%
+Number of clusters: 155
+
+Number of nodes 1000
+Number of edges: 499918
+Connectivity: 50.0%
+Number of clusters: 1000 (Mutually equal similarities - AP returns arbitrary clusters)
+
+Number of nodes 1000
+Number of edges: 749232
+Connectivity: 75.0%
+Number of clusters: 1000 (Mutually equal similarities - AP returns arbitrary clusters)
+
+Number of nodes 1000
+Number of edges: 999000
+Connectivity: 100.0%
+Number of clusters: 1000 (Mutually equal similarities - AP returns arbitrary clusters)
+
+Number of nodes 1500
+Number of edges: 22528
+Connectivity: 1.0%
+Number of clusters: 178
+
+Number of nodes 1500
+Number of edges: 56596
+Connectivity: 2.5%
+Number of clusters: 157
+
+Number of nodes 1500
+Number of edges: 112136
+Connectivity: 5.0%
+Number of clusters: 177
+
+Number of nodes 1500
+Number of edges: 224759
+Connectivity: 10.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 1500
+Number of edges: 561602
+Connectivity: 25.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 1500
+Number of edges: 1124879
+Connectivity: 50.0%
+Number of clusters: 0 - (AP did not converge)
+
+Number of nodes 1500
+Number of edges: 1686414
+Connectivity: 75.0%
+Number of clusters: 1500 (Mutually equal similarities - AP returns arbitrary clusters)
+
+Number of nodes 1500
+Number of edges: 2248500
+Connectivity: 100.0%
+Number of clusters: 1500 (Mutually equal similarities - AP returns arbitrary clusters)
