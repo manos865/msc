@@ -81,13 +81,13 @@ Am[Am > 0] = 0
 
 #define Aplus , Aplustransponse etc as numpy arrays
 Aplus = np.array(Ap)
-#print('A+','\n',Aplus)
+print('A+','\n',Aplus)
 AplusTran = np.transpose(Aplus)
-#print('A+ Tranpose','\n',AplusTran)
+print('A+ Tranpose','\n',AplusTran)
 Aminus = np.array(Am)
-#print('A-','\n',Aminus)
+print('A-','\n',Aminus)
 AminusTran = np.transpose(Aminus)
-#print('A- Tranpose','\n',AminusTran)
+print('A- Tranpose','\n',AminusTran)
 
 
 
@@ -268,7 +268,7 @@ print('\n','balance out','\n', balance_out)
 print('\n','similarity in','\n', Sin)        
 print('\n','similarity out','\n', Sout)
 
-print('\n','similarity','\n', similarity)
+#print('\n','similarity','\n', similarity)
 
 
     
