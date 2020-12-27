@@ -2,19 +2,20 @@
 
 import copy
 import random
+import argparse
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
 from sklearn.cluster import AffinityPropagation
 
+
+SIZE = None
+CONNECTIVITY = None
 ACCURACY = 3
 
-SIZE = 1000
-CONNECTIVITY = 0.3
 
-
-def generate_directed_signed_graph(n: int, p: float = CONNECTIVITY,
+def generate_directed_signed_graph(n: int, p: float,
                                    weights: list = None) -> nx.DiGraph:
     """Generate a random directed signed graph.
 
@@ -122,11 +123,22 @@ def calculate_node_degrees(g):
 
 def main():
     """Run algorithm on random graph."""
+
+    parser = argparse.ArgumentParser(description="input for connectivity and size arguments.")
+    parser.add_argument("size", type=int)
+    parser.add_argument("connectivity", type=float)
+    args = parser.parse_args()
+
+    global CONNECTIVITY, SIZE
+    CONNECTIVITY =  args.connectivity
+    SIZE = args.size
+
+
     g = None
 
     degrees = [0]
     while 0 in degrees:
-        g = generate_directed_signed_graph(n=SIZE)
+        g = generate_directed_signed_graph(n=SIZE,p=CONNECTIVITY)
         degrees = [val for (node, val) in g.degree()]
 
     print("Number of nodes %s" % g.number_of_nodes())
