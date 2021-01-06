@@ -1,0 +1,749 @@
+Number of nodes: 5
+Number of edges: 3
+Connectivity: 1.0%
+Number of clusters: 5
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 0.12474608421325684
+==================================
+Number of nodes: 5
+Number of edges: 3
+Connectivity: 2.5%
+Number of clusters: 5
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 0.01236104965209961
+==================================
+Number of nodes: 5
+Number of edges: 3
+Connectivity: 5.0%
+Number of clusters: 5
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 0.015419244766235352
+==================================
+Number of nodes: 5
+Number of edges: 4
+Connectivity: 10.0%
+Number of clusters: 5
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 0.010990619659423828
+==================================
+Number of nodes: 5
+Number of edges: 5
+Connectivity: 25.0%
+Converged after 15 iterations.
+Number of clusters: 2
+
+Elapsed time: 0.013773918151855469
+==================================
+Number of nodes: 5
+Number of edges: 14
+Connectivity: 50.0%
+Converged after 17 iterations.
+Number of clusters: 3
+
+Elapsed time: 0.00517582893371582
+==================================
+Number of nodes: 5
+Number of edges: 14
+Connectivity: 75.0%
+Converged after 59 iterations.
+Number of clusters: 2
+
+Elapsed time: 0.007719755172729492
+==================================
+Number of nodes: 5
+Number of edges: 20
+Connectivity: 90.0%
+Converged after 17 iterations.
+Number of clusters: 3
+
+Elapsed time: 0.004595518112182617
+==================================
+Number of nodes: 10
+Number of edges: 6
+Connectivity: 1.0%
+Number of clusters: 10
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 7.82748556137085
+==================================
+Number of nodes: 10
+Number of edges: 7
+Connectivity: 2.5%
+Number of clusters: 10
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 0.021651268005371094
+==================================
+Number of nodes: 10
+Number of edges: 9
+Connectivity: 5.0%
+Converged after 60 iterations.
+Number of clusters: 4
+
+Elapsed time: 0.011471271514892578
+==================================
+Number of nodes: 10
+Number of edges: 12
+Connectivity: 10.0%
+Converged after 16 iterations.
+Number of clusters: 3
+
+Elapsed time: 0.005405902862548828
+==================================
+Number of nodes: 10
+Number of edges: 21
+Connectivity: 25.0%
+Converged after 17 iterations.
+Number of clusters: 4
+
+Elapsed time: 0.005072355270385742
+==================================
+Number of nodes: 10
+Number of edges: 47
+Connectivity: 50.0%
+Converged after 21 iterations.
+Number of clusters: 3
+
+Elapsed time: 0.0055234432220458984
+==================================
+Number of nodes: 10
+Number of edges: 64
+Connectivity: 75.0%
+Converged after 16 iterations.
+Number of clusters: 2
+
+Elapsed time: 0.005228996276855469
+==================================
+Number of nodes: 10
+Number of edges: 86
+Connectivity: 90.0%
+Converged after 18 iterations.
+Number of clusters: 4
+
+Elapsed time: 0.005517005920410156
+==================================
+Number of nodes: 25
+Number of edges: 15
+Connectivity: 1.0%
+Converged after 65 iterations.
+Number of clusters: 8
+
+Elapsed time: 105.16437554359436
+==================================
+Number of nodes: 25
+Number of edges: 26
+Connectivity: 2.5%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 0.05176663398742676
+==================================
+Number of nodes: 25
+Number of edges: 32
+Connectivity: 5.0%
+Converged after 65 iterations.
+Number of clusters: 7
+
+Elapsed time: 0.017037153244018555
+==================================
+Number of nodes: 25
+Number of edges: 54
+Connectivity: 10.0%
+Converged after 26 iterations.
+Number of clusters: 6
+
+Elapsed time: 0.011800050735473633
+==================================
+Number of nodes: 25
+Number of edges: 145
+Connectivity: 25.0%
+Converged after 21 iterations.
+Number of clusters: 8
+
+Elapsed time: 0.010656595230102539
+==================================
+Number of nodes: 25
+Number of edges: 310
+Connectivity: 50.0%
+Converged after 22 iterations.
+Number of clusters: 5
+
+Elapsed time: 0.05506014823913574
+==================================
+Number of nodes: 25
+Number of edges: 441
+Connectivity: 75.0%
+Converged after 19 iterations.
+Number of clusters: 6
+
+Elapsed time: 0.014781475067138672
+==================================
+Number of nodes: 25
+Number of edges: 550
+Connectivity: 90.0%
+Converged after 18 iterations.
+Number of clusters: 6
+
+Elapsed time: 0.02344202995300293
+==================================
+Number of nodes: 50
+Number of edges: 43
+Connectivity: 1.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 73080.9837949276
+==================================
+Number of nodes: 50
+Number of edges: 71
+Connectivity: 2.5%
+Converged after 67 iterations.
+Number of clusters: 16
+
+Elapsed time: 0.04040646553039551
+==================================
+Number of nodes: 50
+Number of edges: 116
+Connectivity: 5.0%
+Converged after 19 iterations.
+Number of clusters: 14
+
+Elapsed time: 0.02511453628540039
+==================================
+Number of nodes: 50
+Number of edges: 261
+Connectivity: 10.0%
+Converged after 25 iterations.
+Number of clusters: 10
+
+Elapsed time: 0.035384178161621094
+==================================
+Number of nodes: 50
+Number of edges: 632
+Connectivity: 25.0%
+Converged after 22 iterations.
+Number of clusters: 10
+
+Elapsed time: 0.030439138412475586
+==================================
+Number of nodes: 50
+Number of edges: 1213
+Connectivity: 50.0%
+Converged after 22 iterations.
+Number of clusters: 9
+
+Elapsed time: 0.051334381103515625
+==================================
+Number of nodes: 50
+Number of edges: 1839
+Connectivity: 75.0%
+Converged after 27 iterations.
+Number of clusters: 9
+
+Elapsed time: 0.053034305572509766
+==================================
+Number of nodes: 50
+Number of edges: 2189
+Connectivity: 90.0%
+Converged after 35 iterations.
+Number of clusters: 11
+
+Elapsed time: 0.053847551345825195
+==================================
+Number of nodes: 100
+Number of edges: 120
+Connectivity: 1.0%
+Converged after 61 iterations.
+Number of clusters: 26
+
+Elapsed time: 781.7286021709442
+==================================
+Number of nodes: 100
+Number of edges: 224
+Connectivity: 2.5%
+Converged after 60 iterations.
+Number of clusters: 27
+
+Elapsed time: 0.21339082717895508
+==================================
+Number of nodes: 100
+Number of edges: 515
+Connectivity: 5.0%
+Converged after 34 iterations.
+Number of clusters: 20
+
+Elapsed time: 0.20304393768310547
+==================================
+Number of nodes: 100
+Number of edges: 1006
+Connectivity: 10.0%
+Converged after 32 iterations.
+Number of clusters: 15
+
+Elapsed time: 0.23836278915405273
+==================================
+Number of nodes: 100
+Number of edges: 2523
+Connectivity: 25.0%
+Converged after 30 iterations.
+Number of clusters: 17
+
+Elapsed time: 0.23474574089050293
+==================================
+Number of nodes: 100
+Number of edges: 4917
+Connectivity: 50.0%
+Converged after 24 iterations.
+Number of clusters: 18
+
+Elapsed time: 0.30811452865600586
+==================================
+Number of nodes: 100
+Number of edges: 7397
+Connectivity: 75.0%
+Converged after 24 iterations.
+Number of clusters: 15
+
+Elapsed time: 0.36425304412841797
+==================================
+Number of nodes: 100
+Number of edges: 8918
+Connectivity: 90.0%
+Converged after 50 iterations.
+Number of clusters: 17
+
+Elapsed time: 0.45694541931152344
+==================================
+Number of nodes: 250
+Number of edges: 646
+Connectivity: 1.0%
+Converged after 50 iterations.
+Number of clusters: 54
+
+Elapsed time: 0.9426276683807373
+==================================
+Number of nodes: 250
+Number of edges: 1481
+Connectivity: 2.5%
+Converged after 28 iterations.
+Number of clusters: 49
+
+Elapsed time: 0.7919769287109375
+==================================
+Number of nodes: 250
+Number of edges: 3068
+Connectivity: 5.0%
+Converged after 35 iterations.
+Number of clusters: 37
+
+Elapsed time: 0.9070446491241455
+==================================
+Number of nodes: 250
+Number of edges: 6086
+Connectivity: 10.0%
+Converged after 37 iterations.
+Number of clusters: 34
+
+Elapsed time: 1.0116615295410156
+==================================
+Number of nodes: 250
+Number of edges: 15668
+Connectivity: 25.0%
+Converged after 31 iterations.
+Number of clusters: 40
+
+Elapsed time: 1.5987763404846191
+==================================
+Number of nodes: 250
+Number of edges: 31193
+Connectivity: 50.0%
+Converged after 38 iterations.
+Number of clusters: 35
+
+Elapsed time: 2.551877975463867
+==================================
+Number of nodes: 250
+Number of edges: 46734
+Connectivity: 75.0%
+Converged after 96 iterations.
+Number of clusters: 40
+
+Elapsed time: 3.8854548931121826
+==================================
+Number of nodes: 250
+Number of edges: 55945
+Connectivity: 90.0%
+Converged after 43 iterations.
+Number of clusters: 42
+
+Elapsed time: 3.891043186187744
+==================================
+Number of nodes: 500
+Number of edges: 2481
+Connectivity: 1.0%
+Converged after 54 iterations.
+Number of clusters: 103
+
+Elapsed time: 2.5545692443847656
+==================================
+Number of nodes: 500
+Number of edges: 6259
+Connectivity: 2.5%
+Converged after 23 iterations.
+Number of clusters: 75
+
+Elapsed time: 3.0118918418884277
+==================================
+Number of nodes: 500
+Number of edges: 12392
+Connectivity: 5.0%
+Converged after 36 iterations.
+Number of clusters: 53
+
+Elapsed time: 3.89129900932312
+==================================
+Number of nodes: 500
+Number of edges: 24928
+Connectivity: 10.0%
+Converged after 67 iterations.
+Number of clusters: 68
+
+Elapsed time: 5.374297618865967
+==================================
+Number of nodes: 500
+Number of edges: 62194
+Connectivity: 25.0%
+Converged after 95 iterations.
+Number of clusters: 65
+
+Elapsed time: 9.389801502227783
+==================================
+Number of nodes: 500
+Number of edges: 124744
+Connectivity: 50.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 15.957153081893921
+==================================
+Number of nodes: 500
+Number of edges: 187204
+Connectivity: 75.0%
+Converged after 120 iterations.
+Number of clusters: 115
+
+Elapsed time: 27.36432719230652
+==================================
+Number of nodes: 500
+Number of edges: 224446
+Connectivity: 90.0%
+Converged after 145 iterations.
+Number of clusters: 85
+
+Elapsed time: 30.63605523109436
+==================================
+Number of nodes: 750
+Number of edges: 5536
+Connectivity: 1.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 6.617969036102295
+==================================
+Number of nodes: 750
+Number of edges: 14091
+Connectivity: 2.5%
+Converged after 34 iterations.
+Number of clusters: 86
+
+Elapsed time: 8.24952220916748
+==================================
+Number of nodes: 750
+Number of edges: 28222
+Connectivity: 5.0%
+Converged after 103 iterations.
+Number of clusters: 89
+
+Elapsed time: 11.989034414291382
+==================================
+Number of nodes: 750
+Number of edges: 56145
+Connectivity: 10.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 16.82025408744812
+==================================
+Number of nodes: 750
+Number of edges: 140422
+Connectivity: 25.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 31.30345845222473
+==================================
+Number of nodes: 750
+Number of edges: 280038
+Connectivity: 50.0%
+Converged after 199 iterations.
+Number of clusters: 97
+
+Elapsed time: 51.19749617576599
+==================================
+Number of nodes: 750
+Number of edges: 421256
+Connectivity: 75.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 76.73489809036255
+==================================
+Number of nodes: 750
+Number of edges: 505686
+Connectivity: 90.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 94.09469437599182
+==================================
+Number of nodes: 1000
+Number of edges: 10049
+Connectivity: 1.0%
+Converged after 93 iterations.
+Number of clusters: 153
+
+Elapsed time: 13.903949737548828
+==================================
+Number of nodes: 1000
+Number of edges: 25043
+Connectivity: 2.5%
+Converged after 30 iterations.
+Number of clusters: 100
+
+Elapsed time: 17.415404081344604
+==================================
+Number of nodes: 1000
+Number of edges: 49920
+Connectivity: 5.0%
+Converged after 53 iterations.
+Number of clusters: 128
+
+Elapsed time: 25.517316579818726
+==================================
+Number of nodes: 1000
+Number of edges: 99658
+Connectivity: 10.0%
+Converged after 55 iterations.
+Number of clusters: 122
+
+Elapsed time: 32.385913133621216
+==================================
+Number of nodes: 1000
+Number of edges: 250058
+Connectivity: 25.0%
+Converged after 111 iterations.
+Number of clusters: 155
+
+Elapsed time: 69.44023370742798
+==================================
+Number of nodes: 1000
+Number of edges: 499883
+Connectivity: 50.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 136.58232975006104
+==================================
+Number of nodes: 1000
+Number of edges: 749189
+Connectivity: 75.0%
+Number of clusters: 1000
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 187.5564181804657
+==================================
+Number of nodes: 1000
+Number of edges: 898866
+Connectivity: 90.0%
+Number of clusters: 1000
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 222.6827838420868
+==================================
+Number of nodes: 2500
+Number of edges: 62518
+Connectivity: 1.0%
+Converged after 55 iterations.
+Number of clusters: 205
+
+Elapsed time: 88.99293756484985
+==================================
+Number of nodes: 2500
+Number of edges: 156956
+Connectivity: 2.5%
+Converged after 116 iterations.
+Number of clusters: 264
+
+Elapsed time: 145.3714964389801
+==================================
+Number of nodes: 2500
+Number of edges: 311819
+Connectivity: 5.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 262.4105417728424
+==================================
+Number of nodes: 2500
+Number of edges: 624319
+Connectivity: 10.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 453.3592302799225
+==================================
+Number of nodes: 2500
+Number of edges: 1560300
+Connectivity: 25.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 1030.8168733119965
+==================================
+Number of nodes: 2500
+Number of edges: 3124634
+Connectivity: 50.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 1944.8017768859863
+==================================
+Number of nodes: 2500
+Number of edges: 4684756
+Connectivity: 75.0%
+Number of clusters: 2500
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 2898.1233892440796
+==================================
+Number of nodes: 2500
+Number of edges: 5622940
+Connectivity: 90.0%
+Number of clusters: 2500
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 3495.7363135814667
+==================================
+Number of nodes: 5000
+Number of edges: 250276
+Connectivity: 1.0%
+Converged after 156 iterations.
+Number of clusters: 449
+
+Elapsed time: 825.7633352279663
+==================================
+Number of nodes: 5000
+Number of edges: 625699
+Connectivity: 2.5%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 954.7601161003113
+==================================
+Number of nodes: 5000
+Number of edges: 1248920
+Connectivity: 5.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 2185.422995567322
+==================================
+Number of nodes: 5000
+Number of edges: 2498578
+Connectivity: 10.0%
+Did not converge
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 3380.0380351543427
+==================================
+Number of nodes: 5000
+Number of edges: 6249844
+Connectivity: 25.0%
+Number of clusters: 5000
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 7657.685512781143
+==================================
+Number of nodes: 5000
+Number of edges: 12497205
+Connectivity: 50.0%
+Number of clusters: 5000
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 15400.31131196022
+==================================
+Number of nodes: 5000
+Number of edges: 18745660
+Connectivity: 75.0%
+Number of clusters: 5000
+
+Mutually equal similarities - AP returns arbitrary clusters
+
+Elapsed time: 25009.510373592377
+==================================
+Number of nodes: 5000
+Number of edges: 22495500
+Connectivity: 90.0%
+Number of clusters: 0
+
+(AP did not converge)
+
+Elapsed time: 57225.780192836473
