@@ -18,18 +18,14 @@ ACCURACY = 3
 def generate_directed_signed_graph(n: int, p: float,
                                    weights: list = None) -> nx.DiGraph:
     """Generate a random directed signed graph.
-
     Each node can have the following edges:
-
     1) positive outgoing/referring (w=1)
     2) negative outgoing/referring (w=-1)
     3) positive incoming/citing (w=1)
     4) negative incoming/citing (w=-1)
-
     Args:
         n: Number of nodes
         p: Probability of two nodes being connected (between 0 and 1)
-
     Returns:
         g: A random directed signed graph
     """
@@ -60,28 +56,23 @@ def visualize_graph(g):
     plt.show()
 
 
-def get_adjacency_matrix(g):
+def get_adjacency_matrix(g,SIZE):
     """Return the adjacency matrix of the specified graph.
-
     Args:
         g: The graph for which to calculate the adjacency matrix
-
     Returns:
         The adjacency matrix of g
     """
-    return nx.to_numpy_matrix(g)
+    return nx.to_numpy_matrix(g,range(SIZE))
 
 
 def calculate_node_degrees(g):
     """Calculate all node degrees for the specified graph.
-
     Return a list that contains the following degrees for a each node:
-
     1. out-positive degree: number of outgoing edges, with positive sign
     2. out-negative degree: number of outgoing edges, with negative sign
     3. in-positive degree: number of incoming edges, with positive sign
     4. in-negative degree: number of incoming edges, with negative sign
-
     The length of the returned list equals the SIZE of the graph.
     """
     node_degrees = []
@@ -146,7 +137,7 @@ def main():
     print("Degrees: %s\n" % degrees)
 
     # Adjacency matrix A
-    adj_mat = get_adjacency_matrix(g)
+    adj_mat = get_adjacency_matrix(g,SIZE)
 
     # Positive adjacency matrix A+
     adj_mat_pos = copy.deepcopy(adj_mat)
@@ -249,9 +240,9 @@ def main():
     balance_out = np.zeros([SIZE, SIZE])
     for i in range(SIZE):
         for j in range(SIZE):
-            balance_in[i, j] = min((1 + b_pos[i, j]) / (1 + b_neg[i, j]),
+            balance_out[i, j] = min((1 + b_pos[i, j]) / (1 + b_neg[i, j]),
                                    (1 + b_neg[i, j]) / (1 + b_pos[i, j]))
-            balance_out[i, j] = min((1 + c_pos[i, j]) / (1 + c_neg[i, j]),
+            balance_in[i, j] = min((1 + c_pos[i, j]) / (1 + c_neg[i, j]),
                                     (1 + c_neg[i, j]) / (1 + c_pos[i, j]))
 
     balance_in = np.round(balance_in, decimals=ACCURACY)
@@ -261,8 +252,8 @@ def main():
     print("Outgoing Link Balance Matrix\n", balance_out, "\n")
 
     # Similarity based on incoming and outgoing links
-    sim_in = np.add(b_pos, b_neg)
-    sim_out = np.add(c_pos, c_neg)
+    sim_out = np.add(b_pos, b_neg)
+    sim_in = np.add(c_pos, c_neg)
     for i in range(SIZE):
         for j in range(SIZE):
             sim_in[i, j] *= balance_in[i, j]
