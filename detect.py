@@ -235,29 +235,35 @@ def main():
     print("Positive Co-Citation Matrix (C+)\n", c_pos, "\n")
     print("Negative Co-Citation Matrix (C-)\n", c_neg, "\n")
 
+
+    #########################################
+    ######The balance section of the ########
+    ######code has been commented out########
+    ######since it is not used.      ########
+    #########################################
     # Balance of incoming and outgoing links
-    balance_in = np.zeros([SIZE, SIZE])
-    balance_out = np.zeros([SIZE, SIZE])
-    for i in range(SIZE):
-        for j in range(SIZE):
-            balance_out[i, j] = min((1 + b_pos[i, j]) / (1 + b_neg[i, j]),
-                                   (1 + b_neg[i, j]) / (1 + b_pos[i, j]))
-            balance_in[i, j] = min((1 + c_pos[i, j]) / (1 + c_neg[i, j]),
-                                    (1 + c_neg[i, j]) / (1 + c_pos[i, j]))
+    #balance_in = np.zeros([SIZE, SIZE])
+    #balance_out = np.zeros([SIZE, SIZE])
+    #for i in range(SIZE):
+    #    for j in range(SIZE):
+    #        balance_out[i, j] = min((1 + b_pos[i, j]) / (1 + b_neg[i, j]),
+    #                               (1 + b_neg[i, j]) / (1 + b_pos[i, j]))
+    #        balance_in[i, j] = min((1 + c_pos[i, j]) / (1 + c_neg[i, j]),
+    #                                (1 + c_neg[i, j]) / (1 + c_pos[i, j]))
 
-    balance_in = np.round(balance_in, decimals=ACCURACY)
-    balance_out = np.round(balance_out, decimals=ACCURACY)
+    #balance_in = np.round(balance_in, decimals=ACCURACY)
+    #balance_out = np.round(balance_out, decimals=ACCURACY)
 
-    print("Incoming Link Balance Matrix\n", balance_in, "\n")
-    print("Outgoing Link Balance Matrix\n", balance_out, "\n")
+    #print("Incoming Link Balance Matrix\n", balance_in, "\n")
+    #print("Outgoing Link Balance Matrix\n", balance_out, "\n")
 
     # Similarity based on incoming and outgoing links
     sim_out = np.add(b_pos, b_neg)
     sim_in = np.add(c_pos, c_neg)
-    for i in range(SIZE):
-        for j in range(SIZE):
-            sim_in[i, j] *= balance_in[i, j]
-            sim_out[i, j] *= balance_out[i, j]
+    #for i in range(SIZE):
+    #    for j in range(SIZE):
+    #        sim_in[i, j] *= balance_in[i, j]
+    #        sim_out[i, j] *= balance_out[i, j]
 
     sim_in = np.round(sim_in, decimals=ACCURACY)
     sim_out = np.round(sim_out, decimals=ACCURACY)
@@ -266,12 +272,51 @@ def main():
     print("Outgoing Link Similarity Matrix\n", sim_out, "\n")
 
     similarity = np.add(sim_in, sim_out)
-    print("Total Similarity Matrix\n", similarity, "\n")
+    print("Sum of Incoming and Outgoing Similarity Matrix\n", similarity, "\n")
+
+
+
+    #############################################
+    #Number of Total Edges per node
+    nte = []
+    for i in range(SIZE):
+        nte.append(node_degrees[i]["out"]["positive"] + node_degrees[i]["out"]["negative"] + node_degrees[i]["in"]["positive"] + node_degrees[i]["in"]["negative"])
+    #for i in range(SIZE):
+        #print('node:',i,' has ',nte[i],' edges.')
+        
+    #number of maximum edges per pair of nodes matrix
+    M=np.zeros((SIZE,SIZE))
+    for i in range(SIZE):
+        for j in range(SIZE):
+            M[i,j]=max(nte[i],nte[j])
+    print('\n Matrix of maximum number of edges per pair of nodes \n')
+    print(M)
+
+    ################################
+    #similarity as percentage matrix
+    similarity_percentage = np.zeros((SIZE,SIZE))
+    for i in range(SIZE):
+        for j in range(SIZE):
+            similarity_percentage[i,j]=similarity[i,j]/M[i,j]
+    print('\n Final Similarity matrix \n')
+    
+    np.set_printoptions(linewidth=np.inf)
+    print(np.array(similarity_percentage))
+    #print diagonal values of total similarity matrix
+    diagonal = []
+    for i in range(SIZE):
+        for j in range(SIZE):
+            if i == j:
+                diagonal.append(similarity_percentage[i, j])
+    print("Diagonal values\n", diagonal, "\n")
+    ##############################################
+
+
 
     # Run the Affinity Propagation algorithm
     af = AffinityPropagation(affinity="precomputed", verbose=True,
                              random_state=0)
-    af.fit(similarity)
+    af.fit(similarity_percentage)
 
     clusters = []
     number_of_clusters = len(af.cluster_centers_indices_)
@@ -288,7 +333,7 @@ def main():
     print("Clusters: %s\n" % clusters)
 
     # Visualize the original graph
-    # visualize_graph(g)
+    visualize_graph(g)
 
 
 if __name__ == "__main__":
