@@ -18,6 +18,7 @@ ACCURACY = 3
 def generate_directed_signed_graph(n: int, p: float,
                                    weights: list = None) -> nx.DiGraph:
     """Generate a random directed signed graph.
+
     Each node can have the following edges:
     1) positive outgoing/referring (w=1)
     2) negative outgoing/referring (w=-1)
@@ -29,12 +30,12 @@ def generate_directed_signed_graph(n: int, p: float,
     Returns:
         g: A random directed signed graph
     """
-    print("Generating random signed directed graph with %d nodes and %s%%"
+    print("Generating random signed directed graph with %d nodes and %.2f%%"
           " connectivity" % (n, 100*p))
     g = nx.gnp_random_graph(n, p, directed=True)
     edges = g.edges(data=True)
 
-    # Sign edges: 1 = postive, -1 = negative
+    # Sign edges: 1 = positive, -1 = negative
     if weights is None:
         weights = [-1, 1]
 
@@ -50,24 +51,26 @@ def visualize_graph(g):
     """Visualize the specified graph."""
     pos = nx.spring_layout(g)
     nx.draw_networkx_labels(g, pos)
-    nx.draw_networkx_nodes(g, pos, node_SIZE=250)
+    nx.draw_networkx_nodes(g, pos, node_size=250)
     colors = [g[u][v]["color"] for u, v in g.edges()]
     nx.draw_networkx_edges(g, pos, arrows=True, edge_color=colors)
     plt.show()
 
 
-def get_adjacency_matrix(g,SIZE):
+def get_adjacency_matrix(g):
     """Return the adjacency matrix of the specified graph.
+
     Args:
         g: The graph for which to calculate the adjacency matrix
     Returns:
         The adjacency matrix of g
     """
-    return nx.to_numpy_matrix(g,range(SIZE))
+    return nx.to_numpy_matrix(g, range(SIZE))
 
 
 def calculate_node_degrees(g):
     """Calculate all node degrees for the specified graph.
+
     Return a list that contains the following degrees for a each node:
     1. out-positive degree: number of outgoing edges, with positive sign
     2. out-negative degree: number of outgoing edges, with negative sign
@@ -100,6 +103,11 @@ def calculate_node_degrees(g):
                 else:
                     degree_map["in"]["negative"] += 1
 
+        degree_map["total"] = (degree_map["in"]["positive"] +
+                               degree_map["in"]["negative"] +
+                               degree_map["out"]["positive"] +
+                               degree_map["out"]["negative"])
+
         node_degrees.append(degree_map)
 
         # print("node:", node)
@@ -114,30 +122,29 @@ def calculate_node_degrees(g):
 
 def main():
     """Run algorithm on random graph."""
-
-    parser = argparse.ArgumentParser(description="input for connectivity and size arguments.")
+    parser = argparse.ArgumentParser(description="input for connectivity and"
+                                                 " size arguments.")
     parser.add_argument("size", type=int)
     parser.add_argument("connectivity", type=float)
     args = parser.parse_args()
 
     global CONNECTIVITY, SIZE
-    CONNECTIVITY =  args.connectivity
+    CONNECTIVITY = args.connectivity
     SIZE = args.size
-
 
     g = None
 
     degrees = [0]
     while 0 in degrees:
-        g = generate_directed_signed_graph(n=SIZE,p=CONNECTIVITY)
+        g = generate_directed_signed_graph(n=SIZE, p=CONNECTIVITY)
         degrees = [val for (node, val) in g.degree()]
 
     print("Number of nodes %s" % g.number_of_nodes())
     print("Number of edges: %s" % g.number_of_edges())
-    print("Degrees: %s\n" % degrees)
+    # print("Degrees: %s\n" % degrees)
 
     # Adjacency matrix A
-    adj_mat = get_adjacency_matrix(g,SIZE)
+    adj_mat = get_adjacency_matrix(g)
 
     # Positive adjacency matrix A+
     adj_mat_pos = copy.deepcopy(adj_mat)
@@ -170,64 +177,64 @@ def main():
     # Contains the number of nodes that are commonly cited with positive sign
     # by two nodes
     b_pos = np.matmul(adj_mat_pos, adj_mat_pos_trans)
-    for i in range(SIZE):
-        for j in range(SIZE):
-            norm_factor = (node_degrees[i]["out"]["positive"] *
-                           node_degrees[j]["out"]["positive"])
-            if norm_factor != 0:
-                norm_factor = 1 / norm_factor
-            else:
-                print("Product of positive out-degrees is 0, setting positive"
-                      " co-reference of (%d,%d) to 0" % (i, j))
-            b_pos[i, j] = norm_factor * b_pos[i, j]
+    # for i in range(SIZE):
+    #     for j in range(SIZE):
+    #         norm_factor = (node_degrees[i]["out"]["positive"] *
+    #                        node_degrees[j]["out"]["positive"])
+    #         if norm_factor != 0:
+    #             norm_factor = 1 / norm_factor
+    #         else:
+    #             print("Product of positive out-degrees is 0,setting positive"
+    #                   " co-reference of (%d,%d) to 0" % (i, j))
+    #         b_pos[i, j] = norm_factor * b_pos[i, j]
     b_pos = np.round(b_pos, decimals=ACCURACY)
 
     # Co-reference matrix B-
     # Contains the number of nodes that are commonly cited with negative sign
     # by two nodes
     b_neg = np.matmul(adj_mat_neg, adj_mat_neg_trans)
-    for i in range(SIZE):
-        for j in range(SIZE):
-            norm_factor = (node_degrees[i]["out"]["negative"] *
-                           node_degrees[j]["out"]["negative"])
-            if norm_factor != 0:
-                norm_factor = 1 / norm_factor
-            else:
-                print("Product of negative out-degrees is 0, setting negative"
-                      " co-reference of (%d,%d) to 0" % (i, j))
-            b_neg[i, j] = norm_factor * b_neg[i, j]
+    # for i in range(SIZE):
+    #     for j in range(SIZE):
+    #         norm_factor = (node_degrees[i]["out"]["negative"] *
+    #                        node_degrees[j]["out"]["negative"])
+    #         if norm_factor != 0:
+    #             norm_factor = 1 / norm_factor
+    #         else:
+    #             print("Product of negative out-degrees is 0,setting negative"
+    #                   " co-reference of (%d,%d) to 0" % (i, j))
+    #         b_neg[i, j] = norm_factor * b_neg[i, j]
     b_neg = np.round(b_neg, decimals=ACCURACY)
 
     # Positive Co-Citation matrix C+
     # Contains the number of nodes that commonly point to both i and j with
     # positive sign
     c_pos = np.matmul(adj_mat_pos_trans, adj_mat_pos)
-    for i in range(SIZE):
-        for j in range(SIZE):
-            norm_factor = (node_degrees[i]["in"]["positive"] *
-                           node_degrees[j]["in"]["positive"])
-            if norm_factor != 0:
-                norm_factor = 1 / norm_factor
-            else:
-                print("Product of positive in-degrees is 0, setting positive"
-                      " co-citation of (%d,%d) to 0" % (i, j))
-            c_pos[i, j] = norm_factor * c_pos[i, j]
+    # for i in range(SIZE):
+    #     for j in range(SIZE):
+    #         norm_factor = (node_degrees[i]["in"]["positive"] *
+    #                        node_degrees[j]["in"]["positive"])
+    #         if norm_factor != 0:
+    #             norm_factor = 1 / norm_factor
+    #         else:
+    #             print("Product of positive in-degrees is 0,setting positive"
+    #                   " co-citation of (%d,%d) to 0" % (i, j))
+    #         c_pos[i, j] = norm_factor * c_pos[i, j]
     c_pos = np.round(c_pos, decimals=ACCURACY)
 
     # Negative Co-Citation matrix C-
     # Contains the number of nodes that commonly point to both i and j with
     # negative sign
     c_neg = np.matmul(adj_mat_neg_trans, adj_mat_neg)
-    for i in range(SIZE):
-        for j in range(SIZE):
-            norm_factor = (node_degrees[i]["in"]["negative"] *
-                           node_degrees[j]["in"]["negative"])
-            if norm_factor != 0:
-                norm_factor = 1 / norm_factor
-            else:
-                print("Product of negative in-degrees is 0 - setting negative"
-                      " co-citation of (%d,%d) to 0" % (i, j))
-            c_neg[i, j] = norm_factor * c_neg[i, j]
+    # for i in range(SIZE):
+    #     for j in range(SIZE):
+    #         norm_factor = (node_degrees[i]["in"]["negative"] *
+    #                        node_degrees[j]["in"]["negative"])
+    #         if norm_factor != 0:
+    #             norm_factor = 1 / norm_factor
+    #         else:
+    #             print("Product of negative in-degrees is 0, setting negative"
+    #                   " co-citation of (%d,%d) to 0" % (i, j))
+    #         c_neg[i, j] = norm_factor * c_neg[i, j]
     c_neg = np.round(c_neg, decimals=ACCURACY)
 
     print("Positive Co-Reference Matrix (B+)\n", b_pos, "\n")
@@ -235,35 +242,30 @@ def main():
     print("Positive Co-Citation Matrix (C+)\n", c_pos, "\n")
     print("Negative Co-Citation Matrix (C-)\n", c_neg, "\n")
 
-
-    #########################################
-    ######The balance section of the ########
-    ######code has been commented out########
-    ######since it is not used.      ########
-    #########################################
-    # Balance of incoming and outgoing links
-    #balance_in = np.zeros([SIZE, SIZE])
-    #balance_out = np.zeros([SIZE, SIZE])
-    #for i in range(SIZE):
-    #    for j in range(SIZE):
-    #        balance_out[i, j] = min((1 + b_pos[i, j]) / (1 + b_neg[i, j]),
-    #                               (1 + b_neg[i, j]) / (1 + b_pos[i, j]))
-    #        balance_in[i, j] = min((1 + c_pos[i, j]) / (1 + c_neg[i, j]),
-    #                                (1 + c_neg[i, j]) / (1 + c_pos[i, j]))
-
-    #balance_in = np.round(balance_in, decimals=ACCURACY)
-    #balance_out = np.round(balance_out, decimals=ACCURACY)
-
-    #print("Incoming Link Balance Matrix\n", balance_in, "\n")
-    #print("Outgoing Link Balance Matrix\n", balance_out, "\n")
-
     # Similarity based on incoming and outgoing links
     sim_out = np.add(b_pos, b_neg)
     sim_in = np.add(c_pos, c_neg)
-    #for i in range(SIZE):
-    #    for j in range(SIZE):
-    #        sim_in[i, j] *= balance_in[i, j]
-    #        sim_out[i, j] *= balance_out[i, j]
+
+    # Balance of incoming and outgoing links
+    # balance_in = np.zeros([SIZE, SIZE])
+    # balance_out = np.zeros([SIZE, SIZE])
+    # for i in range(SIZE):
+    #     for j in range(SIZE):
+    #         balance_out[i, j] = min((1 + b_pos[i, j]) / (1 + b_neg[i, j]),
+    #                                 (1 + b_neg[i, j]) / (1 + b_pos[i, j]))
+    #         balance_in[i, j] = min((1 + c_pos[i, j]) / (1 + c_neg[i, j]),
+    #                                 (1 + c_neg[i, j]) / (1 + c_pos[i, j]))
+
+    # balance_in = np.round(balance_in, decimals=ACCURACY)
+    # balance_out = np.round(balance_out, decimals=ACCURACY)
+
+    # print("Incoming Link Balance Matrix\n", balance_in, "\n")
+    # print("Outgoing Link Balance Matrix\n", balance_out, "\n")
+
+    # for i in range(SIZE):
+    #     for j in range(SIZE):
+    #         sim_in[i, j] *= balance_in[i, j]
+    #         sim_out[i, j] *= balance_out[i, j]
 
     sim_in = np.round(sim_in, decimals=ACCURACY)
     sim_out = np.round(sim_out, decimals=ACCURACY)
@@ -272,51 +274,30 @@ def main():
     print("Outgoing Link Similarity Matrix\n", sim_out, "\n")
 
     similarity = np.add(sim_in, sim_out)
-    print("Sum of Incoming and Outgoing Similarity Matrix\n", similarity, "\n")
+    print("Similarity Matrix\n", similarity, "\n")
 
-
-
-    #############################################
-    #Number of Total Edges per node
-    nte = []
-    for i in range(SIZE):
-        nte.append(node_degrees[i]["out"]["positive"] + node_degrees[i]["out"]["negative"] + node_degrees[i]["in"]["positive"] + node_degrees[i]["in"]["negative"])
-    #for i in range(SIZE):
-        #print('node:',i,' has ',nte[i],' edges.')
-        
-    #number of maximum edges per pair of nodes matrix
-    M=np.zeros((SIZE,SIZE))
+    # Number of maximum edges per pair of nodes matrix
+    norm_factors = np.zeros((SIZE, SIZE))
     for i in range(SIZE):
         for j in range(SIZE):
-            M[i,j]=max(nte[i],nte[j])
-    print('\n Matrix of maximum number of edges per pair of nodes \n')
-    print(M)
+            norm_factors[i, j] = 1 / max(node_degrees[i]["total"],
+                                         node_degrees[j]["total"])
 
     ################################
-    #similarity as percentage matrix
-    similarity_percentage = np.zeros((SIZE,SIZE))
+    # Similarity as percentage matrix
+    norm_similarity = np.zeros((SIZE, SIZE))
     for i in range(SIZE):
         for j in range(SIZE):
-            similarity_percentage[i,j]=similarity[i,j]/M[i,j]
-    print('\n Final Similarity matrix \n')
-    
+            norm_similarity[i, j] = similarity[i, j] * norm_factors[i, j]
+
     np.set_printoptions(linewidth=np.inf)
-    print(np.array(similarity_percentage))
-    #print diagonal values of total similarity matrix
-    diagonal = []
-    for i in range(SIZE):
-        for j in range(SIZE):
-            if i == j:
-                diagonal.append(similarity_percentage[i, j])
-    print("Diagonal values\n", diagonal, "\n")
-    ##############################################
-
-
+    norm_similarity = np.round(norm_similarity, decimals=ACCURACY)
+    print("Normalized Similarity Matrix\n", norm_similarity, "\n")
 
     # Run the Affinity Propagation algorithm
     af = AffinityPropagation(affinity="precomputed", verbose=True,
                              random_state=0)
-    af.fit(similarity_percentage)
+    af.fit(norm_similarity)
 
     clusters = []
     number_of_clusters = len(af.cluster_centers_indices_)
@@ -326,14 +307,14 @@ def main():
     for i in range(SIZE):
         for j in range(number_of_clusters):
             if af.labels_[i] == j:
-                clusters[j].append(i + 1)
+                clusters[j].append(i)
 
     print("\nNumber of clusters: %d\n" % number_of_clusters)
     print("Cluster centers: %s\n" % af.cluster_centers_indices_)
     print("Clusters: %s\n" % clusters)
 
     # Visualize the original graph
-    #visualize_graph(g)
+    # visualize_graph(g)
 
 
 if __name__ == "__main__":
