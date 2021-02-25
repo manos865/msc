@@ -333,7 +333,7 @@ def main():
     print("Clusters: %s\n" % clusters)
 
     # Visualize the original graph
-    visualize_graph(g)
+    #visualize_graph(g)
 
 
 if __name__ == "__main__":
