@@ -77,7 +77,7 @@ def calculate_node_degrees(g):
     """
     node_degrees = []
 
-    for node in g.nodes():
+    for node in sorted(g.nodes()):
         degree_map = dict()
         degree_map["out"] = dict()
         degree_map["in"] = dict()
