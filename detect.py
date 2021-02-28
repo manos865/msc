@@ -1,5 +1,6 @@
 """Community detection in signed directed graphs."""
 
+import time
 import copy
 import random
 import argparse
@@ -9,6 +10,7 @@ import matplotlib.pyplot as plt
 
 from sklearn.cluster import AffinityPropagation
 
+start = time.time()
 
 SIZE = None
 CONNECTIVITY = None
@@ -30,8 +32,8 @@ def generate_directed_signed_graph(n: int, p: float,
     Returns:
         g: A random directed signed graph
     """
-    print("Generating random signed directed graph with %d nodes and %.2f%%"
-          " connectivity" % (n, 100*p))
+    #print("Generating random signed directed graph with %d nodes and %.2f%%"
+          #" connectivity" % (n, 100*p))
     g = nx.gnp_random_graph(n, p, directed=True)
     edges = g.edges(data=True)
 
@@ -141,7 +143,10 @@ def main():
 
     print("Number of nodes %s" % g.number_of_nodes())
     print("Number of edges: %s" % g.number_of_edges())
+    print("Connectivity: %s%%" % (CONNECTIVITY * 100))
     # print("Degrees: %s\n" % degrees)
+
+
 
     # Adjacency matrix A
     adj_mat = get_adjacency_matrix(g)
@@ -156,125 +161,60 @@ def main():
     adj_mat_neg = np.asarray(adj_mat_neg)
     adj_mat_neg[adj_mat_neg >= 0] = 0
 
-    print("Adjacency Matrix (A)\n", adj_mat, "\n")
-    print("Positive Adjacency Matrix (A+)\n", adj_mat_pos, "\n")
-    print("Negative Adjacency Matrix (A-)\n", adj_mat_neg, "\n")
-
     # Transpose of positive adjacency matrix A+
     adj_mat_pos_trans = np.transpose(adj_mat_pos)
 
     # Transpose of negative adjacency matrix A-
     adj_mat_neg_trans = np.transpose(adj_mat_neg)
 
-    print("Transpose of Positive Adjacency Matrix (A+)\n", adj_mat_pos_trans,
-          "\n")
-    print("Transpose of Negative Adjacency Matrix (A-)\n", adj_mat_neg_trans,
-          "\n")
+    #print("Adjacency Matrix (A)\n", adj_mat, "\n")
+    #print("Positive Adjacency Matrix (A+)\n", adj_mat_pos, "\n")
+    #print("Negative Adjacency Matrix (A-)\n", adj_mat_neg, "\n")
+    #print("Transpose of Positive Adjacency Matrix (A+)\n", adj_mat_pos_trans,
+          #"\n")
+    #print("Transpose of Negative Adjacency Matrix (A-)\n", adj_mat_neg_trans,
+          #"\n")
+
+
 
     node_degrees = calculate_node_degrees(g)
 
     # Co-reference matrix B+
-    # Contains the number of nodes that are commonly cited with positive sign
-    # by two nodes
+    # Contains the number of nodes that are commonly cited with positive sign by two nodes
     b_pos = np.matmul(adj_mat_pos, adj_mat_pos_trans)
-    # for i in range(SIZE):
-    #     for j in range(SIZE):
-    #         norm_factor = (node_degrees[i]["out"]["positive"] *
-    #                        node_degrees[j]["out"]["positive"])
-    #         if norm_factor != 0:
-    #             norm_factor = 1 / norm_factor
-    #         else:
-    #             print("Product of positive out-degrees is 0,setting positive"
-    #                   " co-reference of (%d,%d) to 0" % (i, j))
-    #         b_pos[i, j] = norm_factor * b_pos[i, j]
     b_pos = np.round(b_pos, decimals=ACCURACY)
 
     # Co-reference matrix B-
-    # Contains the number of nodes that are commonly cited with negative sign
-    # by two nodes
+    # Contains the number of nodes that are commonly cited with negative sign by two nodes
     b_neg = np.matmul(adj_mat_neg, adj_mat_neg_trans)
-    # for i in range(SIZE):
-    #     for j in range(SIZE):
-    #         norm_factor = (node_degrees[i]["out"]["negative"] *
-    #                        node_degrees[j]["out"]["negative"])
-    #         if norm_factor != 0:
-    #             norm_factor = 1 / norm_factor
-    #         else:
-    #             print("Product of negative out-degrees is 0,setting negative"
-    #                   " co-reference of (%d,%d) to 0" % (i, j))
-    #         b_neg[i, j] = norm_factor * b_neg[i, j]
     b_neg = np.round(b_neg, decimals=ACCURACY)
 
     # Positive Co-Citation matrix C+
-    # Contains the number of nodes that commonly point to both i and j with
-    # positive sign
+    # Contains the number of nodes that commonly point to both i and j with positive sign
     c_pos = np.matmul(adj_mat_pos_trans, adj_mat_pos)
-    # for i in range(SIZE):
-    #     for j in range(SIZE):
-    #         norm_factor = (node_degrees[i]["in"]["positive"] *
-    #                        node_degrees[j]["in"]["positive"])
-    #         if norm_factor != 0:
-    #             norm_factor = 1 / norm_factor
-    #         else:
-    #             print("Product of positive in-degrees is 0,setting positive"
-    #                   " co-citation of (%d,%d) to 0" % (i, j))
-    #         c_pos[i, j] = norm_factor * c_pos[i, j]
     c_pos = np.round(c_pos, decimals=ACCURACY)
 
     # Negative Co-Citation matrix C-
-    # Contains the number of nodes that commonly point to both i and j with
-    # negative sign
+    # Contains the number of nodes that commonly point to both i and j with negative sign
     c_neg = np.matmul(adj_mat_neg_trans, adj_mat_neg)
-    # for i in range(SIZE):
-    #     for j in range(SIZE):
-    #         norm_factor = (node_degrees[i]["in"]["negative"] *
-    #                        node_degrees[j]["in"]["negative"])
-    #         if norm_factor != 0:
-    #             norm_factor = 1 / norm_factor
-    #         else:
-    #             print("Product of negative in-degrees is 0, setting negative"
-    #                   " co-citation of (%d,%d) to 0" % (i, j))
-    #         c_neg[i, j] = norm_factor * c_neg[i, j]
     c_neg = np.round(c_neg, decimals=ACCURACY)
-
-    print("Positive Co-Reference Matrix (B+)\n", b_pos, "\n")
-    print("Negative Co-Reference Matrix (B-)\n", b_neg, "\n")
-    print("Positive Co-Citation Matrix (C+)\n", c_pos, "\n")
-    print("Negative Co-Citation Matrix (C-)\n", c_neg, "\n")
 
     # Similarity based on incoming and outgoing links
     sim_out = np.add(b_pos, b_neg)
     sim_in = np.add(c_pos, c_neg)
 
-    # Balance of incoming and outgoing links
-    # balance_in = np.zeros([SIZE, SIZE])
-    # balance_out = np.zeros([SIZE, SIZE])
-    # for i in range(SIZE):
-    #     for j in range(SIZE):
-    #         balance_out[i, j] = min((1 + b_pos[i, j]) / (1 + b_neg[i, j]),
-    #                                 (1 + b_neg[i, j]) / (1 + b_pos[i, j]))
-    #         balance_in[i, j] = min((1 + c_pos[i, j]) / (1 + c_neg[i, j]),
-    #                                 (1 + c_neg[i, j]) / (1 + c_pos[i, j]))
-
-    # balance_in = np.round(balance_in, decimals=ACCURACY)
-    # balance_out = np.round(balance_out, decimals=ACCURACY)
-
-    # print("Incoming Link Balance Matrix\n", balance_in, "\n")
-    # print("Outgoing Link Balance Matrix\n", balance_out, "\n")
-
-    # for i in range(SIZE):
-    #     for j in range(SIZE):
-    #         sim_in[i, j] *= balance_in[i, j]
-    #         sim_out[i, j] *= balance_out[i, j]
-
     sim_in = np.round(sim_in, decimals=ACCURACY)
     sim_out = np.round(sim_out, decimals=ACCURACY)
 
-    print("Incoming Link Similarity Matrix\n", sim_in, "\n")
-    print("Outgoing Link Similarity Matrix\n", sim_out, "\n")
+    similarity_sum = np.add(sim_in, sim_out)
 
-    similarity = np.add(sim_in, sim_out)
-    print("Similarity Matrix\n", similarity, "\n")
+    #print("Positive Co-Reference Matrix (B+)\n", b_pos, "\n")
+    #print("Negative Co-Reference Matrix (B-)\n", b_neg, "\n")
+    #print("Positive Co-Citation Matrix (C+)\n", c_pos, "\n")
+    #print("Negative Co-Citation Matrix (C-)\n", c_neg, "\n")
+    #print("Incoming Link Similarity Matrix\n", sim_in, "\n")
+    #print("Outgoing Link Similarity Matrix\n", sim_out, "\n")
+    #print("Sum of Incoming and Outgoing Similarity Matrices\n", similarity_sum, "\n")
 
     # Number of maximum edges per pair of nodes matrix
     norm_factors = np.zeros((SIZE, SIZE))
@@ -283,16 +223,16 @@ def main():
             norm_factors[i, j] = 1 / max(node_degrees[i]["total"],
                                          node_degrees[j]["total"])
 
-    ################################
+
     # Similarity as percentage matrix
     norm_similarity = np.zeros((SIZE, SIZE))
     for i in range(SIZE):
         for j in range(SIZE):
-            norm_similarity[i, j] = similarity[i, j] * norm_factors[i, j]
+            norm_similarity[i, j] = similarity_sum[i, j] * norm_factors[i, j]
 
     np.set_printoptions(linewidth=np.inf)
     norm_similarity = np.round(norm_similarity, decimals=ACCURACY)
-    print("Normalized Similarity Matrix\n", norm_similarity, "\n")
+    #print("Normalized Similarity Matrix\n", norm_similarity, "\n")
 
     # Run the Affinity Propagation algorithm
     af = AffinityPropagation(affinity="precomputed", verbose=True,
@@ -310,8 +250,19 @@ def main():
                 clusters[j].append(i)
 
     print("\nNumber of clusters: %d\n" % number_of_clusters)
-    print("Cluster centers: %s\n" % af.cluster_centers_indices_)
-    print("Clusters: %s\n" % clusters)
+    #print("Cluster centers: %s\n" % af.cluster_centers_indices_)
+    #print("Clusters: %s\n" % clusters)
+
+    if number_of_clusters == 0:
+        print("\n(AP did not converge)")
+    elif number_of_clusters == SIZE:
+        print("\nMutually equal similarities - AP returns arbitrary clusters")
+
+    print("\nElapsed time:", time.time() - start)
+    print("==================================")
+
+
+
 
     # Visualize the original graph
     # visualize_graph(g)
